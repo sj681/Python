@@ -9,7 +9,7 @@ mean = np.average(r)
 std = np.nanstd(r)
 r = r[np.nonzero(r)]
 
-print(mean,std/mean)
+print(f'mean: {mean}, std/mean: {std/mean}')
 
 # Create circles
 circles = (plt.Circle((xi,yi),ri,fill=False) for xi, yi, ri in zip(x, y, r))
