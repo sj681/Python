@@ -4,19 +4,23 @@ from scipy.stats import lognorm
 
 x,y,r = np.loadtxt('dist2',  unpack = True)
 
+# Do some stats
 mean = np.average(r)
 std = np.nanstd(r)
-r[r == 0] = np.nan
-r = r[~np.isnan(r)]
+r = r[np.nonzero(r)]
 
 print(mean,std/mean)
 
+# Create circles
+circles = (plt.Circle((xi,yi),ri,fill=False) for xi, yi, ri in zip(x, y, r))
 
-for i in range(0, len(x)):
-    circle = plt.Circle((x[i],y[i]),r[i],fill=False)
-    ax=plt.gca()
+# Create figure and axis, then add circles
+fig, ax = plt.subplots()
+for circle in circles:
     ax.add_patch(circle)
-    plt.axis('scaled')
+
+# Neaten up
+plt.axis('scaled')
 plt.xlabel('x (nm)')
 plt.ylabel('y (nm)')
 plt.show()
