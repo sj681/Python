@@ -2,6 +2,7 @@ import numpy as np
 import itertools
 from pathlib import Path
 
+#A program to itterate through the files in /angles_dir and calculates the angle between the
 
 def length(v):
     return np.sqrt(np.dot(v, v))
